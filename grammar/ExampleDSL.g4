@@ -2,29 +2,13 @@ grammar ExampleDSL;
 
 start: program EOF;
 
-program: output? hint? initiate_game bomb_placements;
 
-output:'output:' output_types ;
 
-output_types: 'html' | 'console';
+program: threads_number? time? code_address ;
 
-hint: 'hint:' bool;
+threads_number : INTEGER ;
 
-bool : 'True' | 'False';
 
-initiate_game: 'game:' width 'X' height;
-
-width: INTEGER;
-
-height: INTEGER;
-
-bomb_placements: ('bomb:' bomb_location)+;
-
-bomb_location: x_location ',' y_location;
-
-x_location: INTEGER;
-
-y_location: INTEGER;
 
 
 INTEGER: '0' | [1-9]+ [0-9]*;
