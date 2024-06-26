@@ -1,0 +1,13 @@
+output: console
+hint: True
+game: 5 X 80
+bomb: 1 , 2
+bomb: 1, 1
+bomb: 1, 80
+bomb: 5, 80
+bomb: 5, 1
+bomb: 3, 37
+bomb: 4, 67
+bomb: 4, 69
+bomb: 5, 66
+bomb: 5, 67
