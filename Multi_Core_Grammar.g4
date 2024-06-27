@@ -8,17 +8,19 @@ program: threadsNumber time code;
 threadsNumber: threadST threads_no;
 threadST: 'threads_number:';
 time: bool;
-code: forLoop* otherCode?;
+code: (forLoop* | otherCode?);
 
-forLoop: FOR variable IN (iterable|variable) COLON;
+forLoop: FOR variable IN iterable COLON code;
 
 variable: IDENTIFIER;
 iterable: IDENTIFIER | range;
 
-range: RANGE LPAREN INTEGER (COMMA INTEGER)? RPAREN;
+range: RANGE LPAREN (from COMMA)? to RPAREN;
+from: INTEGER;
+to: INTEGER;
 threads_no: INTEGER;
 bool: BOOLEAN;
-otherCode: .+; // Match all remaining code as a single node
+otherCode: .*?; // Match all remaining code as a single node
 
 // Lexer rules
 FOR: 'for';
@@ -34,6 +36,7 @@ BOOLEAN: 'true' | 'false';
 INTEGER: [0-9]+;
 IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]*;
 DOT: '.';
+INDENT: '\t';
 
 WS: [ \t\r]+ -> skip;
 NEWLINE: '\r'? '\n' -> skip;

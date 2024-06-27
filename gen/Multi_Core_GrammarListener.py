@@ -98,6 +98,24 @@ class Multi_Core_GrammarListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by Multi_Core_GrammarParser#from.
+    def enterFrom(self, ctx:Multi_Core_GrammarParser.FromContext):
+        pass
+
+    # Exit a parse tree produced by Multi_Core_GrammarParser#from.
+    def exitFrom(self, ctx:Multi_Core_GrammarParser.FromContext):
+        pass
+
+
+    # Enter a parse tree produced by Multi_Core_GrammarParser#to.
+    def enterTo(self, ctx:Multi_Core_GrammarParser.ToContext):
+        pass
+
+    # Exit a parse tree produced by Multi_Core_GrammarParser#to.
+    def exitTo(self, ctx:Multi_Core_GrammarParser.ToContext):
+        pass
+
+
     # Enter a parse tree produced by Multi_Core_GrammarParser#threads_no.
     def enterThreads_no(self, ctx:Multi_Core_GrammarParser.Threads_noContext):
         pass

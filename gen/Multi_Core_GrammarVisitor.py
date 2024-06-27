@@ -59,6 +59,16 @@ class Multi_Core_GrammarVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by Multi_Core_GrammarParser#from.
+    def visitFrom(self, ctx:Multi_Core_GrammarParser.FromContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by Multi_Core_GrammarParser#to.
+    def visitTo(self, ctx:Multi_Core_GrammarParser.ToContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by Multi_Core_GrammarParser#threads_no.
     def visitThreads_no(self, ctx:Multi_Core_GrammarParser.Threads_noContext):
         return self.visitChildren(ctx)
