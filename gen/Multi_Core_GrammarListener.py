@@ -1,4 +1,4 @@
-# Generated from /home/asa/Code/Git/Multi-core_DLS/Multi_Core_Grammar.g4 by ANTLR 4.13.1
+# Generated from /home/saba/Git/Multi-core_DLS/Multi_Core_Grammar.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .Multi_Core_GrammarParser import Multi_Core_GrammarParser
@@ -26,12 +26,21 @@ class Multi_Core_GrammarListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by Multi_Core_GrammarParser#threads_number.
-    def enterThreads_number(self, ctx:Multi_Core_GrammarParser.Threads_numberContext):
+    # Enter a parse tree produced by Multi_Core_GrammarParser#threadsNumber.
+    def enterThreadsNumber(self, ctx:Multi_Core_GrammarParser.ThreadsNumberContext):
         pass
 
-    # Exit a parse tree produced by Multi_Core_GrammarParser#threads_number.
-    def exitThreads_number(self, ctx:Multi_Core_GrammarParser.Threads_numberContext):
+    # Exit a parse tree produced by Multi_Core_GrammarParser#threadsNumber.
+    def exitThreadsNumber(self, ctx:Multi_Core_GrammarParser.ThreadsNumberContext):
+        pass
+
+
+    # Enter a parse tree produced by Multi_Core_GrammarParser#threadST.
+    def enterThreadST(self, ctx:Multi_Core_GrammarParser.ThreadSTContext):
+        pass
+
+    # Exit a parse tree produced by Multi_Core_GrammarParser#threadST.
+    def exitThreadST(self, ctx:Multi_Core_GrammarParser.ThreadSTContext):
         pass
 
 
@@ -44,12 +53,75 @@ class Multi_Core_GrammarListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by Multi_Core_GrammarParser#code_address.
-    def enterCode_address(self, ctx:Multi_Core_GrammarParser.Code_addressContext):
+    # Enter a parse tree produced by Multi_Core_GrammarParser#code.
+    def enterCode(self, ctx:Multi_Core_GrammarParser.CodeContext):
         pass
 
-    # Exit a parse tree produced by Multi_Core_GrammarParser#code_address.
-    def exitCode_address(self, ctx:Multi_Core_GrammarParser.Code_addressContext):
+    # Exit a parse tree produced by Multi_Core_GrammarParser#code.
+    def exitCode(self, ctx:Multi_Core_GrammarParser.CodeContext):
+        pass
+
+
+    # Enter a parse tree produced by Multi_Core_GrammarParser#forLoop.
+    def enterForLoop(self, ctx:Multi_Core_GrammarParser.ForLoopContext):
+        pass
+
+    # Exit a parse tree produced by Multi_Core_GrammarParser#forLoop.
+    def exitForLoop(self, ctx:Multi_Core_GrammarParser.ForLoopContext):
+        pass
+
+
+    # Enter a parse tree produced by Multi_Core_GrammarParser#variable.
+    def enterVariable(self, ctx:Multi_Core_GrammarParser.VariableContext):
+        pass
+
+    # Exit a parse tree produced by Multi_Core_GrammarParser#variable.
+    def exitVariable(self, ctx:Multi_Core_GrammarParser.VariableContext):
+        pass
+
+
+    # Enter a parse tree produced by Multi_Core_GrammarParser#iterable.
+    def enterIterable(self, ctx:Multi_Core_GrammarParser.IterableContext):
+        pass
+
+    # Exit a parse tree produced by Multi_Core_GrammarParser#iterable.
+    def exitIterable(self, ctx:Multi_Core_GrammarParser.IterableContext):
+        pass
+
+
+    # Enter a parse tree produced by Multi_Core_GrammarParser#range.
+    def enterRange(self, ctx:Multi_Core_GrammarParser.RangeContext):
+        pass
+
+    # Exit a parse tree produced by Multi_Core_GrammarParser#range.
+    def exitRange(self, ctx:Multi_Core_GrammarParser.RangeContext):
+        pass
+
+
+    # Enter a parse tree produced by Multi_Core_GrammarParser#threads_no.
+    def enterThreads_no(self, ctx:Multi_Core_GrammarParser.Threads_noContext):
+        pass
+
+    # Exit a parse tree produced by Multi_Core_GrammarParser#threads_no.
+    def exitThreads_no(self, ctx:Multi_Core_GrammarParser.Threads_noContext):
+        pass
+
+
+    # Enter a parse tree produced by Multi_Core_GrammarParser#bool.
+    def enterBool(self, ctx:Multi_Core_GrammarParser.BoolContext):
+        pass
+
+    # Exit a parse tree produced by Multi_Core_GrammarParser#bool.
+    def exitBool(self, ctx:Multi_Core_GrammarParser.BoolContext):
+        pass
+
+
+    # Enter a parse tree produced by Multi_Core_GrammarParser#otherCode.
+    def enterOtherCode(self, ctx:Multi_Core_GrammarParser.OtherCodeContext):
+        pass
+
+    # Exit a parse tree produced by Multi_Core_GrammarParser#otherCode.
+    def exitOtherCode(self, ctx:Multi_Core_GrammarParser.OtherCodeContext):
         pass
 
 

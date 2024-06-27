@@ -1,19 +1,39 @@
 grammar Multi_Core_Grammar;
 
+// Parser rules
 start: program EOF;
 
+program: threadsNumber time code;
 
+threadsNumber: threadST threads_no;
+threadST: 'threads_number:';
+time: bool;
+code: forLoop* otherCode?;
 
-program: threads_number? time? code_address ;
-threads_number : INTEGER ;
-time: TIME;
+forLoop: FOR variable IN (iterable|variable) COLON;
 
-code_address : STRING ;
+variable: IDENTIFIER;
+iterable: IDENTIFIER | range;
 
+range: RANGE LPAREN INTEGER (COMMA INTEGER)? RPAREN;
+threads_no: INTEGER;
+bool: BOOLEAN;
+otherCode: .+; // Match all remaining code as a single node
 
-TIME: 'true' | 'false' ;
-INTEGER: '0' | [1-9]+ [0-9]*;
-STRING : [A-Ba-z]+;
+// Lexer rules
+FOR: 'for';
+IN: 'in';
+RANGE: 'range';
+COLON: ':';
+
+LPAREN: '(';
+RPAREN: ')';
+COMMA: ',';
+
+BOOLEAN: 'true' | 'false';
+INTEGER: [0-9]+;
+IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]*;
+DOT: '.';
+
 WS: [ \t\r]+ -> skip;
-NEWLINE: ('\n' | '\r\n' | '\r') -> skip;
-
+NEWLINE: '\r'? '\n' -> skip;
