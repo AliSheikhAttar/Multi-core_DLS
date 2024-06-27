@@ -1,20 +1,20 @@
 from antlr4 import *
 import argparse
-from codes.custom_example_dsl_listener import CustomExampleDSLListener
+from codes.Custom_Multi_Core_listener import Custom_Multi_Core_listener
 from default_codes.ast_to_networkx_graph import show_ast
-from gen.ExampleDSLLexer import ExampleDSLLexer
-from gen.ExampleDSLParser import ExampleDSLParser
+from gen.Multi_Core_GrammarLexer import Multi_Core_GrammarLexer
+from gen.Multi_Core_GrammarParser import Multi_Core_GrammarParser
 from default_codes.post_order_ast_traverser import PostOrderASTTraverser
 from codes.custom_example_dsl_code_generator import CustomExampleDSLCodeGenerator
 
 
 def main(arguments):
 	stream = FileStream(arguments.input, encoding='utf8')
-	lexer = ExampleDSLLexer(stream)
+	lexer = Multi_Core_GrammarLexer(stream)
 	token_stream = CommonTokenStream(lexer)
-	parser = ExampleDSLParser(token_stream)
+	parser = Multi_Core_GrammarParser(token_stream)
 	parse_tree = parser.program()
-	ast_builder_listener = CustomExampleDSLListener(parser.ruleNames)
+	ast_builder_listener = Custom_Multi_Core_listener(parser.ruleNames)
 	walker = ParseTreeWalker()
 	walker.walk(t=parse_tree, listener=ast_builder_listener)
 	ast = ast_builder_listener.ast

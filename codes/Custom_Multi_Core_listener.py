@@ -1,9 +1,9 @@
 from default_codes.ast import AST
 from default_codes.make_ast_subtree import make_ast_subtree
-from gen.ExampleDSLListener import ExampleDSLListener
+from gen.Multi_Core_GrammarListener import Multi_Core_GrammarListener
 
 
-class CustomExampleDSLListener(ExampleDSLListener):
+class Custom_Multi_Core_listener(Multi_Core_GrammarListener):
     def __init__(self, rule_names):
         self.overridden_rules = ['program', 'initiate_game', 'output', 'hint']
         self.rule_names = rule_names

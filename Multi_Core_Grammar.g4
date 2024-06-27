@@ -1,4 +1,4 @@
-grammar ExampleDSL;
+grammar Multi_Core_Grammar;
 
 start: program EOF;
 
