@@ -28,32 +28,28 @@ class CustomExampleDSLCodeGenerator:
         if item == "program":
             self.generate_program()
 
-        # elif item == "threadsNumber":
-        #     self.set_output_type()
-        #
-        # elif item == "time":
-        #     self.generate_initiate_game()
-        #
-        # elif item == "codeAddress":
-
-        #
-        # elif item == "begin_scope_operator":
-        #     self.generate_begin_scope_operator()
-        #
-        # elif item == "end_scope_operator":
-        #     self.generate_end_scope_operator()
-
-
-
     def generate_program(self):
+        func_name
         y = self.operand_stack.pop()
         # Open the file in read mode
         with open(y, 'r') as file:
             # Read the file line by line
-            for line in file:
-                # Print each line
-                print(line.strip())  # strip() to remove the newline characters
-                self.code_stack.append(line)
+            for i in range(len(file)):
+                if 'def' in file[i]:
+                    func_name = find(def_name)
+                if 'for' in file[i]:
+                    if func_name != '' and func_name in line[i+1]:
+                        if(thread_num == 0):
+                            string = """ 
+                                        thread.joing({func_name})
+                                        """
+                            append(code_stack)
+                            """ 
+                            thread.wait({func_name})
+                            """
+                            append(code_stack)
+                            
+                append(code_stack)
 
         # placements_code = self.code_stack.pop()
         # initiate_code = self.code_stack.pop()

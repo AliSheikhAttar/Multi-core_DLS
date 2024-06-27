@@ -1,4 +1,4 @@
-# Generated from /home/saba/Git/Multi-core_DLS/Multi_Core_Grammar.g4 by ANTLR 4.13.1
+# Generated from /home/asa/Code/Git/Multi-core_DLS/Multi_Core_Grammar.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .Multi_Core_GrammarParser import Multi_Core_GrammarParser

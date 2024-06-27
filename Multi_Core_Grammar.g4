@@ -8,7 +8,7 @@ program: threadsNumber time code;
 threadsNumber: threadST threads_no;
 threadST: 'threads_number:';
 time: bool;
-code: (forLoop* | otherCode?);
+code: (forLoop? | otherCode?);
 
 forLoop: FOR variable IN iterable COLON code;
 
@@ -20,7 +20,7 @@ from: INTEGER;
 to: INTEGER;
 threads_no: INTEGER;
 bool: BOOLEAN;
-otherCode: .*?; // Match all remaining code as a single node
+otherCode: (forLoop | .)*?; // Match all remaining code as a single node
 
 // Lexer rules
 FOR: 'for';
