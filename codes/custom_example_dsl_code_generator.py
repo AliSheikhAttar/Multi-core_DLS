@@ -8,6 +8,7 @@ class CustomExampleDSLCodeGenerator:
         self.code_stack = []
         self.thread_no = 2
         self.showTime = False
+        self.case = 0
     def is_operand(self, item):
         if item in self.non_operands:
             return False
@@ -59,33 +60,63 @@ class CustomExampleDSLCodeGenerator:
 
     def generate_program(self):
         self.code_stack.append("import threading\n")
-        self.thread_no = 2
+        self.code_stack.append("threads = []\n")
+        self.code_stack.append(f"threads_num = {self.thread_no}\n")
+
         address = self.operand_stack.pop()
-        deflist = []
+
         with open(address, 'r') as file:
             lines = file.readlines()
+            for _ in lines:
+                function_match = re.match(r'\s*def\s+(\w+)\s*\(', lines[j])
+                if function_match:
+                    self.case = 10
+                    break
 
-            for i in range(len(lines)):
-                if re.search(r'\bfor\b', lines[i]):
-                    forline = i
-                    for j in range(i - 1, -1, -1):
-                        function_match = re.match(r'\s*def\s+(\w+)\s*\(', lines[j])
-                        if function_match:
-                            functionline = j
-                            range_sp = (lines[j].split('(')[1]).split(',')
-                            print(1)
-                            start = (range_sp[0])
-                            end = (range_sp[1].split(')'))[0]
-                            function_name = function_match.group(1)
-                            code_to_add = ""
-                            for t in range(self.thread_no):
-                                code_to_add += f"sep = {end} - {start} + 1\n"
-                                code_to_add += f"thread{t} = threading.Thread(target={function_name}, args=({t}*(sep/{self.thread_no}), {t + 1}*(sep/{self.thread_no})))\n"
-                            for s in range(self.thread_no):
-                                code_to_add += f"thread{s}.start()\n"
-                            for jo in range(self.thread_no):print(1)
-                                code_to_add += f"thread{jo}.join()\n"
-        print(0)
+        if self.case == 10:
+            with open(address, 'r') as file:
+                lines = file.readlines()
+
+                for i in range(len(lines)):
+                    if re.search(r'\bfor\b', lines[i]):
+                        self.case = 1
+                        break
+
+                if self.case != 1:
+                    self.case = 0
+        else:
+            self.case = 0
+
+
+
+        match self.case:
+            case 0:
+                handle_case_0()
+            case 1:
+                handle_case_1()
+            case 2:
+                handle_case_2()
+            case default:
+                print("not supported for this version!")
+
+
+                    # for j in range(i - 1, -1, -1):
+                    #     function_match = re.match(r'\s*def\s+(\w+)\s*\(', lines[j])
+                        # if function_match:
+                        #     functionline = j
+                        #     range_sp = (lines[j].split('(')[1]).split(',')
+                        #     print(1)
+                        #     start = (range_sp[0])
+                        #     end = (range_sp[1].split(')'))[0]
+                        #     function_name = function_match.group(1)
+                        #     code_to_add = ""
+                        #     for t in range(self.thread_no):
+                        #         code_to_add += f"sep = {end} - {start} + 1\n"
+                        #         code_to_add += f"thread{t} = threading.Thread(target={function_name}, args=({t}*(sep/{self.thread_no}), {t + 1}*(sep/{self.thread_no})))\n"
+                        #     for s in range(self.thread_no):
+                        #         code_to_add += f"thread{s}.start()\n"
+                        #     for jo in range(self.thread_no):
+                        #         code_to_add += f"thread{jo}.join()\n"
 
 
 
@@ -139,26 +170,15 @@ class CustomExampleDSLCodeGenerator:
         #                     )
         #     self.code_stack.append(program_code)
 
-    def generate_threadsNumber(self):
+   def handle_case_0(self):
         pass
-    def generate_threadST(self):
+
+   def handle_case_1(self):
         pass
-    def generate_time(self):
+
+   def handle_case_2(self):
         pass
-    def generate_forLoop(self):
-        pass
-    def generate_Mcode(self):
-        pass
-    def generate_variable(self):
-        pass
-    def generate_iterable(self):
-        pass
-    def generate_range(self):
-        pass
-    def generate_from(self):
-        pass
-    def generate_otherCode(self):
-        pass
+
     def generate_bool(self):
         self.showTime = self.operand_stack.pop()
     def generate_threads_no(self):
