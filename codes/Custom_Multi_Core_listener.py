@@ -7,7 +7,7 @@ class Custom_Multi_Core_listener(Multi_Core_GrammarListener):
         self.overridden_rules = [
             'program', 'threadsNumber', 'threadST', 'time', 'code',
             'forLoop', 'variable', 'iterable', 'range', 'threads_no',
-            'bool', 'otherCode', 'from', 'to'
+            'bool', 'otherCode', 'from', 'to', 'threadST'
         ]
         self.rule_names = rule_names
         self.ast = AST()
@@ -17,14 +17,18 @@ class Custom_Multi_Core_listener(Multi_Core_GrammarListener):
         if rule_name not in self.overridden_rules:
             make_ast_subtree(self.ast, ctx, rule_name)
 
+
+    # Exit a parse tree produced by Multi_Core_GrammarParser#address.
+    def exitPythonFile(self, ctx):
+        make_ast_subtree(self.ast, ctx, "address", keep_node=True)
     def exitProgram(self, ctx):
         make_ast_subtree(self.ast, ctx, "program", keep_node=True)
 
+    # def exitThreadST(self, ctx):
+    #     make_ast_subtree(self.ast, ctx, "threadST", keep_node=False)
+
     def exitThreadsNumber(self, ctx):
         make_ast_subtree(self.ast, ctx, "threadsNumber", keep_node=True)
-
-    def exitThreadST(self, ctx):
-        make_ast_subtree(self.ast, ctx, "threadST", keep_node=True)
 
     def exitTime(self, ctx):
         make_ast_subtree(self.ast, ctx, "time", keep_node=True)

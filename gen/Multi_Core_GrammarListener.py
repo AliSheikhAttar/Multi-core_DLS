@@ -1,4 +1,4 @@
-# Generated from /home/asa/Code/Git/Multi-core_DLS/Multi_Core_Grammar.g4 by ANTLR 4.13.1
+# Generated from /home/saba/Git/Multi-core_DLS/Multi_Core_Grammar.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .Multi_Core_GrammarParser import Multi_Core_GrammarParser
@@ -50,15 +50,6 @@ class Multi_Core_GrammarListener(ParseTreeListener):
 
     # Exit a parse tree produced by Multi_Core_GrammarParser#time.
     def exitTime(self, ctx:Multi_Core_GrammarParser.TimeContext):
-        pass
-
-
-    # Enter a parse tree produced by Multi_Core_GrammarParser#code.
-    def enterCode(self, ctx:Multi_Core_GrammarParser.CodeContext):
-        pass
-
-    # Exit a parse tree produced by Multi_Core_GrammarParser#code.
-    def exitCode(self, ctx:Multi_Core_GrammarParser.CodeContext):
         pass
 
 
@@ -140,6 +131,15 @@ class Multi_Core_GrammarListener(ParseTreeListener):
 
     # Exit a parse tree produced by Multi_Core_GrammarParser#otherCode.
     def exitOtherCode(self, ctx:Multi_Core_GrammarParser.OtherCodeContext):
+        pass
+
+
+    # Enter a parse tree produced by Multi_Core_GrammarParser#pythonFile.
+    def enterPythonFile(self, ctx:Multi_Core_GrammarParser.PythonFileContext):
+        pass
+
+    # Exit a parse tree produced by Multi_Core_GrammarParser#pythonFile.
+    def exitPythonFile(self, ctx:Multi_Core_GrammarParser.PythonFileContext):
         pass
 
 

@@ -3,14 +3,13 @@ grammar Multi_Core_Grammar;
 // Parser rules
 start: program EOF;
 
-program: threadsNumber time code;
+program: threadsNumber time (forLoop | pythonFile)*;
 
 threadsNumber: threadST threads_no;
 threadST: 'threads_number:';
 time: bool;
-code: (forLoop? | otherCode?);
 
-forLoop: FOR variable IN iterable COLON code;
+forLoop: FOR variable IN iterable COLON (forLoop | otherCode)*;
 
 variable: IDENTIFIER;
 iterable: IDENTIFIER | range;
@@ -20,7 +19,9 @@ from: INTEGER;
 to: INTEGER;
 threads_no: INTEGER;
 bool: BOOLEAN;
-otherCode: (forLoop | .)*?; // Match all remaining code as a single node
+otherCode: .+?; // Match all remaining code as a single node
+
+pythonFile: FILEPATH;
 
 // Lexer rules
 FOR: 'for';
@@ -35,6 +36,7 @@ COMMA: ',';
 BOOLEAN: 'true' | 'false';
 INTEGER: [0-9]+;
 IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]*;
+FILEPATH: ('/' | '\\')? (IDENTIFIER ('/' | '\\'))* IDENTIFIER '.py';
 DOT: '.';
 INDENT: '\t';
 
