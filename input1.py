@@ -1,10 +1,10 @@
 
-def print_numbers(start, end):
-    for i in range(start, end + 1):
-        print(i)
+def print_numbers(file):
+    for i in range(len(file)):
+        print(file[i])
 
+files = []
 
-
-for i in range(50):
-    print_numbers(i, i*100)
+for file in files:
+    print_numbers(file)
 

@@ -1,3 +1,3 @@
-x = "salamham"
-y = x.split("salam")
-print(y)
+x = "for i in range"
+identifier = x.split("in")[0].split("for")[1].strip()
+print(identifier)

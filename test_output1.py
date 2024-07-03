@@ -3,16 +3,17 @@ import timeit
 threads = []
 threads_num = 4
 
-def print_numbers(start, end):
-    for i in range(start, end + 1):
-        print(i)
+def print_numbers(file):
+    for i in range(len(file)):
+        print(file[i])
 
-
+files = []
 
 start_time = timeit.timeit()
-for i in range(50):
+
+for file in files:
                     
-    thread = threading.Thread(target=print_numbers, args=(i, i*100))
+    thread = threading.Thread(target=print_numbers, args=(file))
     threads.append(thread)
     
 for thread in threads:

@@ -3,18 +3,15 @@ import timeit
 threads = []
 threads_num = 4
 
-def print_numbers(start, end):
-    for i in range(start, end + 1):
-        print(i)
-
-end = 100
-start = 0
-step = 25
-
 start_time = timeit.timeit()
+                 
+def thread_func(i, j):
+    print(i, i*100)
+    x= i * i
+    print(x)
 
-for i in range(start, end, step):
-    thread = threading.Thread(target=print_numbers, args=(i, i+step))
+for i in range(50):
+    thread = threading.Thread(target=thread_func, args=[i, 0])
     threads.append(thread)
 
 for thread in threads:
@@ -22,7 +19,7 @@ for thread in threads:
 
 for thread in threads:
     thread.join()
-
+    
 end_time = timeit.timeit()
+
 print(f"elapsed time : {end_time - start_time}")
-                        
