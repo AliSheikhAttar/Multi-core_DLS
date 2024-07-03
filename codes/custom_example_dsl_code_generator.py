@@ -41,7 +41,7 @@ class CustomExampleDSLCodeGenerator:
     def generate_program(self):
         self.code_stack.append("import threading\n")
         if self.time:
-            self.code_stack.append("import timeit")
+            self.code_stack.append("import timeit\n")
         self.code_stack.append("threads = []\n")
         self.code_stack.append(f"threads_num = {self.thread_no}\n")
 
@@ -60,8 +60,6 @@ class CustomExampleDSLCodeGenerator:
                 handle_case_2()
             case default:
                 print("not supported for this version!")
-
-
 
 
     def determine_case(self):
@@ -102,44 +100,42 @@ class CustomExampleDSLCodeGenerator:
         with open(self.file_address, 'r') as file:
             lines = file.readlines()
             for line in lines:
-                if re.search(r'\bfor\b', line):
+                if not(line.startswith("def")) and line.__contains__(function_name):
                     arguments = line.split(")")[0].split("(")[1].split(",")
                     self.code_stack.append(f"end = {arguments[1]}\n")
                     self.code_stack.append(f"start = {arguments[0]}\n")
-                    self.code_stack.append(f"step = {int(int(arguments[1]) - int(arguments[0]))/self.thread_no}\n")
-                    break
+                    self.code_stack.append(f"step = {int((int(arguments[1]) - int(arguments[0]))/self.thread_no)}\n")
+                    if self.time:
+                        self.code_stack.append(f"""
+start_time = timeit.timeit()
+
+for i in range(start, end, step):
+    thread = threading.Thread(target={function_name}, args=(i, i+step))
+    threads.append(thread)
+
+for thread in threads:
+    thread.start()
+
+for thread in threads:
+    thread.join()
+
+end_time = timeit.timeit()
+print(f"elapsed time : { '{' + 'start_time' + ' - ' + 'end_time' + '}'}")
+                        """)
+                    else:
+                        self.code_stack.append(
+                            """
+for i in range(start, end, step):
+    thread = threading.Thread(target=print_numbers, args=(i, i+step))
+    threads.append(thread)
+for thread in threads:
+    thread.start()
+for thread in threads:
+    thread.join()
+""")
                 else:
                     self.code_stack.append(line)
-        if self.time:
-            self.code_stack.append("""
-                                    start_time = timeit.timeit()
-                                    
-                                    for i in range(start,end,step):
-                                        thread = threading.Thread(target=print_numbers, args=(i, i+step))
-                                    threads.append(thread)
-            
-                                    for thread in threads:
-                                        thread.start()
-            
-                                    for thread in threads:
-                                        thread.join()
-            
-                                    end_time = timeit.timeit()
-                                    print(f"elapsed time : {start_time - end_time}")
-                                    """)
-        else:
-            self.code_stack.append("""
-                                    for i in range(start,end,step):
-                                        thread = threading.Thread(target=print_numbers, args=(i, i+step))
-                                    threads.append(thread)
-            
-                                    for thread in threads:
-                                        thread.start()
-            
-                                    for thread in threads:
-                                        thread.join()
-            
-                                    """)
+
 
     def handle_case_1(self):
         code_to_add = ""
