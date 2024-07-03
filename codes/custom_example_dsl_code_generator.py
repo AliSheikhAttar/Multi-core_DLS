@@ -72,7 +72,7 @@ class CustomExampleDSLCodeGenerator:
                 function_match = re.match(r'\s*def\s+(\w+)\s*\(', line)
                 if function_match:
                     def_counts += 1
-                    if def_counts > 2:
+                    if def_counts > 1:
                         self.case = 3
                         break
 
@@ -205,6 +205,8 @@ print(f"elapsed time : { '{' + 'end_time' + ' - ' + 'start_time' + '}'}")
                     while(counter < len(lines)):
                         self.code_stack.append(lines[counter])
                         counter += 1
+                else:
+                    self.code_stack.append(lines[i])
         loop_body += "\n"
         if (self.time):
             self.code_stack.append(f"""
@@ -259,7 +261,7 @@ for thread in threads:
                     arg = lines[i].split(")")[0].split("(")[1]
                     functions.append([func_name,arg])
                     self.code_stack.append(lines[i])
-                elif "(" in lines[i] and "print" not in lines[i]:
+                elif "(" in lines[i] and "print" not in lines[i] and "for" not in lines[i]:
                     for i in range(len(functions)):
                         if functions[i][0] in lines[i]:
                             functions[i][1] = lines[i].split(")")[0].split("(")[1]

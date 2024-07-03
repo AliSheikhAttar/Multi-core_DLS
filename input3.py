@@ -1,36 +1,48 @@
+import random
 
-x = 4
-x = 6
+def matrix_multiply(A, B):
+    n = len(A)
+    result = [[0] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            for k in range(n):
+                result[i][j] += A[i][k] * B[k][j]
+    print("multiply of two matrices are: {}\n".format(result))
 
-print("hello")
-fsd = 4
-def hello1():
-    print("hello")
-    x = 4*2
-    print(x)
+def matrix_sum(A, B):
+    n = len(A)
+    result = [[0] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            result[i][j] = A[i][j] + B[i][j]
 
-fsd = 4
+    print("sum of two matrices are: {}\n".format(result))
 
-def hello3():
-    r = 4
-    f = 3
-fsd = 4
-hello1()
-fsd = 4
+def matrix_dot_product(A, B):
+    n = len(A)
+    result = 0
+    for i in range(n):
+        for j in range(n):
+            result += A[i][j] * B[i][j]
 
-def hello2(t):
-    print("this")
-    print("is")
-    print(t)
+    print("Dot product of two matrices are: {}\n".format(result))
 
 
-r = 89
-e = r*3
-t = e/2
-hello2(t)
 
-hello3()
-fsd = 4
 
-fdsj = 9
+n = 8
+A = [[random.randint(1, 10) for _ in range(n)] for _ in range(n)]
+B = [[random.randint(1, 10) for _ in range(n)] for _ in range(n)]
+
+
+print("Matrix A:")
+for row in A:
+    print(row)
+print("Matrix B:")
+for row in B:
+    print(row)
+
+result_multiply = matrix_multiply(A, B)
+result_sum = matrix_sum(A, B)
+result_dot_product = matrix_dot_product(A, B)
 

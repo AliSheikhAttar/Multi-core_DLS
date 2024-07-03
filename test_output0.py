@@ -2,24 +2,29 @@ import threading
 import timeit
 threads = []
 threads_num = 4
+import math
+def compute_factorial(start, end):
+    for i in range(start, end):
+        result = math.factorial(i)
+        print(f"Factorial of {i} is {result}")
 
-def print_numbers(start, end):
-    for i in range(start, end + 1):
-        print(i)
 
-end = 100
-start = 0
-step = 25
+end =  10
+start = 1
+step = 2
 
 start_time = timeit.timeit()
 
+# Creating threads
 for i in range(start, end, step):
-    thread = threading.Thread(target=print_numbers, args=(i, i+step))
+    thread = threading.Thread(target=compute_factorial, args=(i, i+step))
     threads.append(thread)
 
+# Starting threads 
 for thread in threads:
     thread.start()
 
+# Wait for threads to finish
 for thread in threads:
     thread.join()
 

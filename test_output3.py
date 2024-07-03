@@ -2,54 +2,66 @@ import threading
 import timeit
 threads = []
 threads_num = 4
+import random
 
-x = 4
-x = 6
+def matrix_multiply(A, B):
+    result = [[0] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            for k in range(n):
+                result[i][j] += A[i][k] * B[k][j]
+    print("multiply of two matrices are: {}\n".format(result))
 
-print("hello")
-fsd = 4
-def hello1():
-    print("hello")
-    x = 4*2
-    print(x)
+def matrix_sum(A, B):
+    result = [[0] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            result[i][j] = A[i][j] + B[i][j]
 
-fsd = 4
+    print("sum of two matrices are: {}\n".format(result))
 
-def hello3():
-    r = 4
-    f = 3
-fsd = 4
-fsd = 4
+def matrix_dot_product(A, B):
+    result = 0
+    for i in range(n):
+        for j in range(n):
+            result += A[i][j] * B[i][j]
 
-def hello2(t):
-    print("this")
-    print("is")
-    print(t)
+    print("Dot product of two matrices are: {}\n".format(result))
 
 
-r = 89
-e = r*3
-t = e/2
 
-fsd = 4
 
-fdsj = 9
+n = 8
+A = [[random.randint(1, 10) for _ in range(n)] for _ in range(n)]
+B = [[random.randint(1, 10) for _ in range(n)] for _ in range(n)]
+
+
+print("Matrix A:")
+for row in A:
+    print(row)
+print("Matrix B:")
+for row in B:
+    print(row)
+
 
 start_time = timeit.timeit()
 
 
-thread0 = threading.Thread(target=hello1,args=())
+# Creating threads
+thread0 = threading.Thread(target=matrix_multiply,args=(A, B))
 
-thread1 = threading.Thread(target=hello3,args=())
+thread1 = threading.Thread(target=matrix_sum,args=(A, B))
 
-thread2 = threading.Thread(target=hello2,args=[t])
+thread2 = threading.Thread(target=matrix_dot_product,args=(A, B))
 
+# Starting threads
 thread0.start()
 
 thread1.start()
 
 thread2.start()
 
+# Wait for threads to finish
 thread0.join()
 
 thread1.join()
