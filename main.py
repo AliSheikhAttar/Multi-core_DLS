@@ -30,8 +30,8 @@ def main(arguments):
 
 if __name__ == '__main__':
 	argparser = argparse.ArgumentParser()
-	argparser.add_argument('-i', '--input', help='Input source', default=r'test.minesweeper')
-	argparser.add_argument('-o', '--output', help='Output path', default=r'test_output.py')
+	argparser.add_argument('-i', '--input', help='Input source', default=r'input.txt')
+	argparser.add_argument('-o', '--output', help='Output path', default=r'test_output0.py')
 	args = argparser.parse_args()
 	main(args)
 

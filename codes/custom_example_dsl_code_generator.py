@@ -6,9 +6,11 @@ class CustomExampleDSLCodeGenerator:
         'bool', 'otherCode', 'from', 'to']
         self.operand_stack = []
         self.code_stack = []
+        self.time = False
         self.thread_no = 2
         self.showTime = False
         self.case = 0
+        self.file_address = ""
     def is_operand(self, item):
         if item in self.non_operands:
             return False
@@ -33,52 +35,52 @@ class CustomExampleDSLCodeGenerator:
             self.generate_program()
         if item == "threadsNumber":
             self.generate_threadsNumber()
-        if item == "threadST":
-            self.generate_threadST()
         if item == "time":
             self.generate_time()
-        if item == "code":
-            self.generate_Mcode()
-        if item == "forLoop":
-            self.generate_forLoop()
-        if item == "variable":
-            self.generate_variable()
-        if item == "iterable":
-            self.generate_iterable()
-        if item == "range":
-            self.generate_range()
-        if item == "threads_no":
-            self.generate_threads_no()
-        if item == "bool":
-            self.generate_bool()
-        if item == "otherCode":
-            self.generate_otherCode()
-        if item == "from":
-            self.generate_from()
-        if item == "to":
-            self.generate_to()
 
     def generate_program(self):
         self.code_stack.append("import threading\n")
+        if self.time:
+            self.code_stack.append("import timeit")
         self.code_stack.append("threads = []\n")
         self.code_stack.append(f"threads_num = {self.thread_no}\n")
 
-        address = self.operand_stack.pop()
+        self.file_address = self.operand_stack.pop()
 
-        with open(address, 'r') as file:
+        self.determine_case()
+
+
+
+        match self.case:
+            case 0:
+                self.handle_case_0()
+            case 1:
+                self.handle_case_1()
+            case 2:
+                handle_case_2()
+            case default:
+                print("not supported for this version!")
+
+
+
+
+    def determine_case(self):
+        with open(self.file_address, 'r') as file:
             lines = file.readlines()
-            for _ in lines:
-                function_match = re.match(r'\s*def\s+(\w+)\s*\(', lines[j])
+            for line in lines:
+                function_match = re.match(r'\s*def\s+(\w+)\s*\(', line)
                 if function_match:
                     self.case = 10
                     break
 
         if self.case == 10:
-            with open(address, 'r') as file:
+            with open(self.file_address, 'r') as file:
                 lines = file.readlines()
 
-                for i in range(len(lines)):
-                    if re.search(r'\bfor\b', lines[i]):
+                for line in lines:
+                    stripped_line = line.lstrip()
+                    # Check if the line starts with 'for' and is not preceded by any tabs or spaces
+                    if stripped_line.startswith('for') and line.startswith('for'):
                         self.case = 1
                         break
 
@@ -87,105 +89,99 @@ class CustomExampleDSLCodeGenerator:
         else:
             self.case = 0
 
+    def handle_case_0(self):
+        function_name = ""
+        with open(self.file_address, 'r') as file:
+            lines = file.readlines()
+            for line in lines:
+                function_match = re.match(r'\s*def\s+(\w+)\s*\(', line)
+                if function_match:
+                    function_sec = line.split(" ")[1]
+                    function_name = function_sec.split("(")[0]
+                    break
+        with open(self.file_address, 'r') as file:
+            lines = file.readlines()
+            for line in lines:
+                if re.search(r'\bfor\b', line):
+                    arguments = line.split(")")[0].split("(")[1].split(",")
+                    self.code_stack.append(f"end = {arguments[1]}\n")
+                    self.code_stack.append(f"start = {arguments[0]}\n")
+                    self.code_stack.append(f"step = {int(int(arguments[1]) - int(arguments[0]))/self.thread_no}\n")
+                    break
+                else:
+                    self.code_stack.append(line)
+        if self.time:
+            self.code_stack.append("""
+                                    start_time = timeit.timeit()
+                                    
+                                    for i in range(start,end,step):
+                                        thread = threading.Thread(target=print_numbers, args=(i, i+step))
+                                    threads.append(thread)
+            
+                                    for thread in threads:
+                                        thread.start()
+            
+                                    for thread in threads:
+                                        thread.join()
+            
+                                    end_time = timeit.timeit()
+                                    print(f"elapsed time : {start_time - end_time}")
+                                    """)
+        else:
+            self.code_stack.append("""
+                                    for i in range(start,end,step):
+                                        thread = threading.Thread(target=print_numbers, args=(i, i+step))
+                                    threads.append(thread)
+            
+                                    for thread in threads:
+                                        thread.start()
+            
+                                    for thread in threads:
+                                        thread.join()
+            
+                                    """)
+
+    def handle_case_1(self):
+        code_to_add = ""
+        with open(self.file_address, 'r') as file:
+            lines = file.readlines()
+            for line in lines:
+                if (line.startswith("for")):
+                    break
+            code_to_add += line
+
+            for line in lines:
+                for i in range(len(lines)):
+                    if re.search(r'\bfor\b', line):
+                        for j in range(i - 1, -1, -1):
+                            function_match = re.match(r'\s*def\s+(\w+)\s*\(', lines[j])
+                            if function_match:
+                                range_sp = (lines[j].split('(')[1]).split(',')
+                                start = (range_sp[0])
+                                end = (range_sp[1].split(')'))[0]
+                                function_name = function_match.group(1)
+                                code_to_add += f"""
+                                     sep = {end} - {start} + 1
+                                     startTime = timeit.timeit()
+                                     for t in range(threads_num):
+                                         thread = threading.Thread(target={function_name}, args=(t*({sep}/threads_num), (t + 1)*({sep}/threads_num)))
+                                         threads.append(thread)
+                                     for thread in threads:
+                                         thread.start()
+                                    for thread in threads:
+                                        thread.join()
+                                    endTime = timeit.timeit()
+                                    print(endTime - startTime)
+                              """
+        self.code_stack.append(code_to_add)
 
 
-        match self.case:
-            case 0:
-                handle_case_0()
-            case 1:
-                handle_case_1()
-            case 2:
-                handle_case_2()
-            case default:
-                print("not supported for this version!")
+    def generate_threadsNumber(self):
+        self.thread_no = int(self.operand_stack.pop())
 
-
-                    # for j in range(i - 1, -1, -1):
-                    #     function_match = re.match(r'\s*def\s+(\w+)\s*\(', lines[j])
-                        # if function_match:
-                        #     functionline = j
-                        #     range_sp = (lines[j].split('(')[1]).split(',')
-                        #     print(1)
-                        #     start = (range_sp[0])
-                        #     end = (range_sp[1].split(')'))[0]
-                        #     function_name = function_match.group(1)
-                        #     code_to_add = ""
-                        #     for t in range(self.thread_no):
-                        #         code_to_add += f"sep = {end} - {start} + 1\n"
-                        #         code_to_add += f"thread{t} = threading.Thread(target={function_name}, args=({t}*(sep/{self.thread_no}), {t + 1}*(sep/{self.thread_no})))\n"
-                        #     for s in range(self.thread_no):
-                        #         code_to_add += f"thread{s}.start()\n"
-                        #     for jo in range(self.thread_no):
-                        #         code_to_add += f"thread{jo}.join()\n"
-
-
-
-        # for line in lines:
-        #     if line.startswith('def'):
-        #         defname = (((line.split())[1]).split('('))[0]
-        #         deflist.append(defname)
-        # func_name
-        # # Open the file in read mode
-        # with open(y, 'r') as file:
-        #     # Read the file line by line
-        #     for i in range(len(file)):
-        #         if 'def' in file[i]:
-        #             func_name = find(def_name)
-        #         if 'for' in file[i]:
-        #             if func_name != '' and func_name in line[i+1]:
-        #                 if(thread_num == 0):
-        #                     string = """
-        #                                 thread.joing({func_name})
-        #                                 """
-        #                     append(code_stack)
-        #                     """
-        #                     thread.wait({func_name})
-        #                     """
-        #                     append(code_stack)
-        #
-        #         append(code_stack)
-        # print(y)
-        # print(x)
-        # placements_code = self.code_stack.pop()
-        # initiate_code = self.code_stack.pop()
-        # output_type = 'console'
-        # if len(self.code_stack) > 0:
-        #     temp_code = self.code_stack.pop()
-        #     if temp_code.startswith('##COMPILER_PARAM:::output_type:::'):
-        #         output_type = temp_code.replace('##COMPILER_PARAM:::output_type:::', '')
-        #     else:
-        #         self.code_stack.append(temp_code)
-        #
-        # if output_type == 'console':
-        #     program_code = (initiate_code + placements_code
-        #                     + f"\nfor i in range({self.width}):\n" +
-        #                     f"\tfor j in ()range({self.height}):\n" +
-        #                     "\t\tif bombs[i][j]:\n" +
-        #                     "\t\t\tprint('*', end ='')\n" +
-        #                     "\t\telif hint and hints[i][j] > 0:\n" +
-        #                     "\t\t\tprint(hints[i][j], end ='')\n" +
-        #                     "\t\telse:\n" +
-        #                     "\t\t\tprint('#', end ='')\n" +
-        #                     "\tprint()"
-        #                     )
-        #     self.code_stack.append(program_code)
-
-   def handle_case_0(self):
-        pass
-
-   def handle_case_1(self):
-        pass
-
-   def handle_case_2(self):
-        pass
-
-    def generate_bool(self):
-        self.showTime = self.operand_stack.pop()
-    def generate_threads_no(self):
-        self.thread_no =int(self.operand_stack.pop())
-    def generate_to(self):
-        pass
-
+    def generate_time(self):
+        operand = self.operand_stack.pop()
+        self.time = True if operand == 'true' else False
     def generate_begin_scope_operator(self):
         self.code_stack.append("##COMPILER_PARAM:::scope:::begin_scope_operator")
 
