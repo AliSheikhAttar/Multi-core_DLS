@@ -43,6 +43,6 @@ for row in B:
     print(row)
 
 result_multiply = matrix_multiply(A, B)
-result_sum = matrix_sum(A, B)
+result_sum = matrix_sum(A, B) 
 result_dot_product = matrix_dot_product(A, B)
 
