@@ -49,8 +49,6 @@ class CustomExampleDSLCodeGenerator:
 
         self.determine_case()
 
-
-
         match self.case:
             case 0:
                 self.handle_case_0()
@@ -60,6 +58,8 @@ class CustomExampleDSLCodeGenerator:
                 handle_case_2()
             case default:
                 print("not supported for this version!")
+
+
 
 
     def determine_case(self):
@@ -120,13 +120,13 @@ for thread in threads:
     thread.join()
 
 end_time = timeit.timeit()
-print(f"elapsed time : { '{' + 'start_time' + ' - ' + 'end_time' + '}'}")
+print(f"elapsed time : { '{' + 'end_time' + ' - ' + 'start_time' + '}'}")
                         """)
                     else:
                         self.code_stack.append(
-                            """
+                            f"""
 for i in range(start, end, step):
-    thread = threading.Thread(target=print_numbers, args=(i, i+step))
+    thread = threading.Thread(target={function_name}, args=(i, i+step))
     threads.append(thread)
 for thread in threads:
     thread.start()
@@ -138,39 +138,36 @@ for thread in threads:
 
 
     def handle_case_1(self):
-        code_to_add = ""
         with open(self.file_address, 'r') as file:
             lines = file.readlines()
-            for line in lines:
-                if (line.startswith("for")):
-                    break
-            code_to_add += line
+            skip = False
+            for i in range(len(lines)):
+                if lines[i].startswith("for"):
+                    if self.time:
+                        self.code_stack.append("start_time = timeit.timeit()\n\n")
+                    self.code_stack.append(lines[i])
+                    function_name = lines[i+1].split("(")[0]
+                    args = lines[i+1].split(function_name)[1]
+                    self.code_stack.append(f"""                    
+    thread = threading.Thread(target={function_name.lstrip()}, args={" ".join(args.rsplit())})
+    threads.append(thread)
+    
+for thread in threads:
+    thread.start()
+for thread in threads:
+    thread.join()""")
+                    if self.time:
+                        self.code_stack.append(f"""
 
-            for line in lines:
-                for i in range(len(lines)):
-                    if re.search(r'\bfor\b', line):
-                        for j in range(i - 1, -1, -1):
-                            function_match = re.match(r'\s*def\s+(\w+)\s*\(', lines[j])
-                            if function_match:
-                                range_sp = (lines[j].split('(')[1]).split(',')
-                                start = (range_sp[0])
-                                end = (range_sp[1].split(')'))[0]
-                                function_name = function_match.group(1)
-                                code_to_add += f"""
-                                     sep = {end} - {start} + 1
-                                     startTime = timeit.timeit()
-                                     for t in range(threads_num):
-                                         thread = threading.Thread(target={function_name}, args=(t*({sep}/threads_num), (t + 1)*({sep}/threads_num)))
-                                         threads.append(thread)
-                                     for thread in threads:
-                                         thread.start()
-                                    for thread in threads:
-                                        thread.join()
-                                    endTime = timeit.timeit()
-                                    print(endTime - startTime)
-                              """
-        self.code_stack.append(code_to_add)
-
+end_time = timeit.timeit()
+print(f"elapsed time : { '{' + 'end_time' + ' - ' + 'start_time' + '}'}")
+        """)
+                    skip = True
+                else:
+                    if skip:
+                        skip = False
+                        continue
+                    self.code_stack.append(lines[i])
 
     def generate_threadsNumber(self):
         self.thread_no = int(self.operand_stack.pop())
