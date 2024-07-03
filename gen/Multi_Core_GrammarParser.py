@@ -1,4 +1,4 @@
-# Generated from /home/saba/Git/Multi-core_DLS/Multi_Core_Grammar.g4 by ANTLR 4.13.1
+# Generated from /home/asa/Code/Git/Multi-core_DLS/Multi_Core_Grammar.g4 by ANTLR 4.13.1
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -10,33 +10,36 @@ else:
 
 def serializedATN():
     return [
-        4,1,16,93,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,17,102,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
-        2,14,7,14,1,0,1,0,1,0,1,1,1,1,1,1,1,1,5,1,38,8,1,10,1,12,1,41,9,
-        1,1,2,1,2,1,2,1,3,1,3,1,4,1,4,1,5,1,5,1,5,1,5,1,5,1,5,1,5,5,5,57,
-        8,5,10,5,12,5,60,9,5,1,6,1,6,1,7,1,7,3,7,66,8,7,1,8,1,8,1,8,1,8,
-        1,8,3,8,73,8,8,1,8,1,8,1,8,1,9,1,9,1,10,1,10,1,11,1,11,1,12,1,12,
-        1,13,4,13,87,8,13,11,13,12,13,88,1,14,1,14,1,14,1,88,0,15,0,2,4,
-        6,8,10,12,14,16,18,20,22,24,26,28,0,0,84,0,30,1,0,0,0,2,33,1,0,0,
-        0,4,42,1,0,0,0,6,45,1,0,0,0,8,47,1,0,0,0,10,49,1,0,0,0,12,61,1,0,
-        0,0,14,65,1,0,0,0,16,67,1,0,0,0,18,77,1,0,0,0,20,79,1,0,0,0,22,81,
-        1,0,0,0,24,83,1,0,0,0,26,86,1,0,0,0,28,90,1,0,0,0,30,31,3,2,1,0,
-        31,32,5,0,0,1,32,1,1,0,0,0,33,34,3,4,2,0,34,39,3,8,4,0,35,38,3,10,
-        5,0,36,38,3,28,14,0,37,35,1,0,0,0,37,36,1,0,0,0,38,41,1,0,0,0,39,
-        37,1,0,0,0,39,40,1,0,0,0,40,3,1,0,0,0,41,39,1,0,0,0,42,43,3,6,3,
-        0,43,44,3,22,11,0,44,5,1,0,0,0,45,46,5,1,0,0,46,7,1,0,0,0,47,48,
-        3,24,12,0,48,9,1,0,0,0,49,50,5,2,0,0,50,51,3,12,6,0,51,52,5,3,0,
-        0,52,53,3,14,7,0,53,58,5,5,0,0,54,57,3,10,5,0,55,57,3,26,13,0,56,
-        54,1,0,0,0,56,55,1,0,0,0,57,60,1,0,0,0,58,56,1,0,0,0,58,59,1,0,0,
-        0,59,11,1,0,0,0,60,58,1,0,0,0,61,62,5,11,0,0,62,13,1,0,0,0,63,66,
-        5,11,0,0,64,66,3,16,8,0,65,63,1,0,0,0,65,64,1,0,0,0,66,15,1,0,0,
-        0,67,68,5,4,0,0,68,72,5,6,0,0,69,70,3,18,9,0,70,71,5,8,0,0,71,73,
-        1,0,0,0,72,69,1,0,0,0,72,73,1,0,0,0,73,74,1,0,0,0,74,75,3,20,10,
-        0,75,76,5,7,0,0,76,17,1,0,0,0,77,78,5,10,0,0,78,19,1,0,0,0,79,80,
-        5,10,0,0,80,21,1,0,0,0,81,82,5,10,0,0,82,23,1,0,0,0,83,84,5,9,0,
-        0,84,25,1,0,0,0,85,87,9,0,0,0,86,85,1,0,0,0,87,88,1,0,0,0,88,89,
-        1,0,0,0,88,86,1,0,0,0,89,27,1,0,0,0,90,91,5,12,0,0,91,29,1,0,0,0,
-        7,37,39,56,58,65,72,88
+        2,14,7,14,2,15,7,15,1,0,1,0,1,0,1,1,1,1,1,1,1,1,5,1,40,8,1,10,1,
+        12,1,43,9,1,1,2,3,2,46,8,2,1,2,1,2,1,3,1,3,1,4,3,4,53,8,4,1,4,1,
+        4,1,5,1,5,1,6,1,6,1,6,1,6,1,6,1,6,1,6,5,6,66,8,6,10,6,12,6,69,9,
+        6,1,7,1,7,1,8,1,8,3,8,75,8,8,1,9,1,9,1,9,1,9,1,9,3,9,82,8,9,1,9,
+        1,9,1,9,1,10,1,10,1,11,1,11,1,12,1,12,1,13,1,13,1,14,4,14,96,8,14,
+        11,14,12,14,97,1,15,1,15,1,15,1,97,0,16,0,2,4,6,8,10,12,14,16,18,
+        20,22,24,26,28,30,0,0,94,0,32,1,0,0,0,2,35,1,0,0,0,4,45,1,0,0,0,
+        6,49,1,0,0,0,8,52,1,0,0,0,10,56,1,0,0,0,12,58,1,0,0,0,14,70,1,0,
+        0,0,16,74,1,0,0,0,18,76,1,0,0,0,20,86,1,0,0,0,22,88,1,0,0,0,24,90,
+        1,0,0,0,26,92,1,0,0,0,28,95,1,0,0,0,30,99,1,0,0,0,32,33,3,2,1,0,
+        33,34,5,0,0,1,34,1,1,0,0,0,35,36,3,4,2,0,36,41,3,8,4,0,37,40,3,12,
+        6,0,38,40,3,30,15,0,39,37,1,0,0,0,39,38,1,0,0,0,40,43,1,0,0,0,41,
+        39,1,0,0,0,41,42,1,0,0,0,42,3,1,0,0,0,43,41,1,0,0,0,44,46,3,6,3,
+        0,45,44,1,0,0,0,45,46,1,0,0,0,46,47,1,0,0,0,47,48,3,24,12,0,48,5,
+        1,0,0,0,49,50,5,1,0,0,50,7,1,0,0,0,51,53,3,10,5,0,52,51,1,0,0,0,
+        52,53,1,0,0,0,53,54,1,0,0,0,54,55,3,26,13,0,55,9,1,0,0,0,56,57,5,
+        2,0,0,57,11,1,0,0,0,58,59,5,3,0,0,59,60,3,14,7,0,60,61,5,4,0,0,61,
+        62,3,16,8,0,62,67,5,6,0,0,63,66,3,12,6,0,64,66,3,28,14,0,65,63,1,
+        0,0,0,65,64,1,0,0,0,66,69,1,0,0,0,67,65,1,0,0,0,67,68,1,0,0,0,68,
+        13,1,0,0,0,69,67,1,0,0,0,70,71,5,12,0,0,71,15,1,0,0,0,72,75,5,12,
+        0,0,73,75,3,18,9,0,74,72,1,0,0,0,74,73,1,0,0,0,75,17,1,0,0,0,76,
+        77,5,5,0,0,77,81,5,7,0,0,78,79,3,20,10,0,79,80,5,9,0,0,80,82,1,0,
+        0,0,81,78,1,0,0,0,81,82,1,0,0,0,82,83,1,0,0,0,83,84,3,22,11,0,84,
+        85,5,8,0,0,85,19,1,0,0,0,86,87,5,11,0,0,87,21,1,0,0,0,88,89,5,11,
+        0,0,89,23,1,0,0,0,90,91,5,11,0,0,91,25,1,0,0,0,92,93,5,10,0,0,93,
+        27,1,0,0,0,94,96,9,0,0,0,95,94,1,0,0,0,96,97,1,0,0,0,97,98,1,0,0,
+        0,97,95,1,0,0,0,98,29,1,0,0,0,99,100,5,13,0,0,100,31,1,0,0,0,9,39,
+        41,45,52,65,67,74,81,97
     ]
 
 class Multi_Core_GrammarParser ( Parser ):
@@ -49,51 +52,54 @@ class Multi_Core_GrammarParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "'threads_number:'", "'for'", "'in'", 
-                     "'range'", "':'", "'('", "')'", "','", "<INVALID>", 
+    literalNames = [ "<INVALID>", "'threads_number:'", "'time:'", "'for'", 
+                     "'in'", "'range'", "':'", "'('", "')'", "','", "<INVALID>", 
                      "<INVALID>", "<INVALID>", "<INVALID>", "'.'", "'\\t'" ]
 
-    symbolicNames = [ "<INVALID>", "<INVALID>", "FOR", "IN", "RANGE", "COLON", 
-                      "LPAREN", "RPAREN", "COMMA", "BOOLEAN", "INTEGER", 
-                      "IDENTIFIER", "FILEPATH", "DOT", "INDENT", "WS", "NEWLINE" ]
+    symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "FOR", "IN", 
+                      "RANGE", "COLON", "LPAREN", "RPAREN", "COMMA", "BOOLEAN", 
+                      "INTEGER", "IDENTIFIER", "FILEPATH", "DOT", "INDENT", 
+                      "WS", "NEWLINE" ]
 
     RULE_start = 0
     RULE_program = 1
     RULE_threadsNumber = 2
     RULE_threadST = 3
     RULE_time = 4
-    RULE_forLoop = 5
-    RULE_variable = 6
-    RULE_iterable = 7
-    RULE_range = 8
-    RULE_from = 9
-    RULE_to = 10
-    RULE_threads_no = 11
-    RULE_bool = 12
-    RULE_otherCode = 13
-    RULE_pythonFile = 14
+    RULE_timeST = 5
+    RULE_forLoop = 6
+    RULE_variable = 7
+    RULE_iterable = 8
+    RULE_range = 9
+    RULE_from = 10
+    RULE_to = 11
+    RULE_threads_no = 12
+    RULE_bool = 13
+    RULE_otherCode = 14
+    RULE_pythonFile = 15
 
     ruleNames =  [ "start", "program", "threadsNumber", "threadST", "time", 
-                   "forLoop", "variable", "iterable", "range", "from", "to", 
-                   "threads_no", "bool", "otherCode", "pythonFile" ]
+                   "timeST", "forLoop", "variable", "iterable", "range", 
+                   "from", "to", "threads_no", "bool", "otherCode", "pythonFile" ]
 
     EOF = Token.EOF
     T__0=1
-    FOR=2
-    IN=3
-    RANGE=4
-    COLON=5
-    LPAREN=6
-    RPAREN=7
-    COMMA=8
-    BOOLEAN=9
-    INTEGER=10
-    IDENTIFIER=11
-    FILEPATH=12
-    DOT=13
-    INDENT=14
-    WS=15
-    NEWLINE=16
+    T__1=2
+    FOR=3
+    IN=4
+    RANGE=5
+    COLON=6
+    LPAREN=7
+    RPAREN=8
+    COMMA=9
+    BOOLEAN=10
+    INTEGER=11
+    IDENTIFIER=12
+    FILEPATH=13
+    DOT=14
+    INDENT=15
+    WS=16
+    NEWLINE=17
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -144,9 +150,9 @@ class Multi_Core_GrammarParser ( Parser ):
         self.enterRule(localctx, 0, self.RULE_start)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 30
+            self.state = 32
             self.program()
-            self.state = 31
+            self.state = 33
             self.match(Multi_Core_GrammarParser.EOF)
         except RecognitionException as re:
             localctx.exception = re
@@ -213,29 +219,29 @@ class Multi_Core_GrammarParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 33
+            self.state = 35
             self.threadsNumber()
-            self.state = 34
+            self.state = 36
             self.time()
-            self.state = 39
+            self.state = 41
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==2 or _la==12:
-                self.state = 37
+            while _la==3 or _la==13:
+                self.state = 39
                 self._errHandler.sync(self)
                 token = self._input.LA(1)
-                if token in [2]:
-                    self.state = 35
+                if token in [3]:
+                    self.state = 37
                     self.forLoop()
                     pass
-                elif token in [12]:
-                    self.state = 36
+                elif token in [13]:
+                    self.state = 38
                     self.pythonFile()
                     pass
                 else:
                     raise NoViableAltException(self)
 
-                self.state = 41
+                self.state = 43
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -255,12 +261,12 @@ class Multi_Core_GrammarParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def threadST(self):
-            return self.getTypedRuleContext(Multi_Core_GrammarParser.ThreadSTContext,0)
-
-
         def threads_no(self):
             return self.getTypedRuleContext(Multi_Core_GrammarParser.Threads_noContext,0)
+
+
+        def threadST(self):
+            return self.getTypedRuleContext(Multi_Core_GrammarParser.ThreadSTContext,0)
 
 
         def getRuleIndex(self):
@@ -287,11 +293,18 @@ class Multi_Core_GrammarParser ( Parser ):
 
         localctx = Multi_Core_GrammarParser.ThreadsNumberContext(self, self._ctx, self.state)
         self.enterRule(localctx, 4, self.RULE_threadsNumber)
+        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 42
-            self.threadST()
-            self.state = 43
+            self.state = 45
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            if _la==1:
+                self.state = 44
+                self.threadST()
+
+
+            self.state = 47
             self.threads_no()
         except RecognitionException as re:
             localctx.exception = re
@@ -336,7 +349,7 @@ class Multi_Core_GrammarParser ( Parser ):
         self.enterRule(localctx, 6, self.RULE_threadST)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 45
+            self.state = 49
             self.match(Multi_Core_GrammarParser.T__0)
         except RecognitionException as re:
             localctx.exception = re
@@ -356,6 +369,10 @@ class Multi_Core_GrammarParser ( Parser ):
 
         def bool_(self):
             return self.getTypedRuleContext(Multi_Core_GrammarParser.BoolContext,0)
+
+
+        def timeST(self):
+            return self.getTypedRuleContext(Multi_Core_GrammarParser.TimeSTContext,0)
 
 
         def getRuleIndex(self):
@@ -382,10 +399,64 @@ class Multi_Core_GrammarParser ( Parser ):
 
         localctx = Multi_Core_GrammarParser.TimeContext(self, self._ctx, self.state)
         self.enterRule(localctx, 8, self.RULE_time)
+        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 47
+            self.state = 52
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            if _la==2:
+                self.state = 51
+                self.timeST()
+
+
+            self.state = 54
             self.bool_()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class TimeSTContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+
+        def getRuleIndex(self):
+            return Multi_Core_GrammarParser.RULE_timeST
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterTimeST" ):
+                listener.enterTimeST(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitTimeST" ):
+                listener.exitTimeST(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitTimeST" ):
+                return visitor.visitTimeST(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def timeST(self):
+
+        localctx = Multi_Core_GrammarParser.TimeSTContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 10, self.RULE_timeST)
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 56
+            self.match(Multi_Core_GrammarParser.T__1)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -456,41 +527,41 @@ class Multi_Core_GrammarParser ( Parser ):
     def forLoop(self):
 
         localctx = Multi_Core_GrammarParser.ForLoopContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 10, self.RULE_forLoop)
+        self.enterRule(localctx, 12, self.RULE_forLoop)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 49
-            self.match(Multi_Core_GrammarParser.FOR)
-            self.state = 50
-            self.variable()
-            self.state = 51
-            self.match(Multi_Core_GrammarParser.IN)
-            self.state = 52
-            self.iterable()
-            self.state = 53
-            self.match(Multi_Core_GrammarParser.COLON)
             self.state = 58
+            self.match(Multi_Core_GrammarParser.FOR)
+            self.state = 59
+            self.variable()
+            self.state = 60
+            self.match(Multi_Core_GrammarParser.IN)
+            self.state = 61
+            self.iterable()
+            self.state = 62
+            self.match(Multi_Core_GrammarParser.COLON)
+            self.state = 67
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,3,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,5,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
-                    self.state = 56
+                    self.state = 65
                     self._errHandler.sync(self)
-                    la_ = self._interp.adaptivePredict(self._input,2,self._ctx)
+                    la_ = self._interp.adaptivePredict(self._input,4,self._ctx)
                     if la_ == 1:
-                        self.state = 54
+                        self.state = 63
                         self.forLoop()
                         pass
 
                     elif la_ == 2:
-                        self.state = 55
+                        self.state = 64
                         self.otherCode()
                         pass
 
              
-                self.state = 60
+                self.state = 69
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,3,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,5,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -534,10 +605,10 @@ class Multi_Core_GrammarParser ( Parser ):
     def variable(self):
 
         localctx = Multi_Core_GrammarParser.VariableContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 12, self.RULE_variable)
+        self.enterRule(localctx, 14, self.RULE_variable)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 61
+            self.state = 70
             self.match(Multi_Core_GrammarParser.IDENTIFIER)
         except RecognitionException as re:
             localctx.exception = re
@@ -585,19 +656,19 @@ class Multi_Core_GrammarParser ( Parser ):
     def iterable(self):
 
         localctx = Multi_Core_GrammarParser.IterableContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 14, self.RULE_iterable)
+        self.enterRule(localctx, 16, self.RULE_iterable)
         try:
-            self.state = 65
+            self.state = 74
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [11]:
+            if token in [12]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 63
+                self.state = 72
                 self.match(Multi_Core_GrammarParser.IDENTIFIER)
                 pass
-            elif token in [4]:
+            elif token in [5]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 64
+                self.state = 73
                 self.range_()
                 pass
             else:
@@ -662,26 +733,26 @@ class Multi_Core_GrammarParser ( Parser ):
     def range_(self):
 
         localctx = Multi_Core_GrammarParser.RangeContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 16, self.RULE_range)
+        self.enterRule(localctx, 18, self.RULE_range)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 67
+            self.state = 76
             self.match(Multi_Core_GrammarParser.RANGE)
-            self.state = 68
+            self.state = 77
             self.match(Multi_Core_GrammarParser.LPAREN)
-            self.state = 72
+            self.state = 81
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,5,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,7,self._ctx)
             if la_ == 1:
-                self.state = 69
+                self.state = 78
                 self.from_()
-                self.state = 70
+                self.state = 79
                 self.match(Multi_Core_GrammarParser.COMMA)
 
 
-            self.state = 74
+            self.state = 83
             self.to()
-            self.state = 75
+            self.state = 84
             self.match(Multi_Core_GrammarParser.RPAREN)
         except RecognitionException as re:
             localctx.exception = re
@@ -725,10 +796,10 @@ class Multi_Core_GrammarParser ( Parser ):
     def from_(self):
 
         localctx = Multi_Core_GrammarParser.FromContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 18, self.RULE_from)
+        self.enterRule(localctx, 20, self.RULE_from)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 77
+            self.state = 86
             self.match(Multi_Core_GrammarParser.INTEGER)
         except RecognitionException as re:
             localctx.exception = re
@@ -772,10 +843,10 @@ class Multi_Core_GrammarParser ( Parser ):
     def to(self):
 
         localctx = Multi_Core_GrammarParser.ToContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 20, self.RULE_to)
+        self.enterRule(localctx, 22, self.RULE_to)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 79
+            self.state = 88
             self.match(Multi_Core_GrammarParser.INTEGER)
         except RecognitionException as re:
             localctx.exception = re
@@ -819,10 +890,10 @@ class Multi_Core_GrammarParser ( Parser ):
     def threads_no(self):
 
         localctx = Multi_Core_GrammarParser.Threads_noContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 22, self.RULE_threads_no)
+        self.enterRule(localctx, 24, self.RULE_threads_no)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 81
+            self.state = 90
             self.match(Multi_Core_GrammarParser.INTEGER)
         except RecognitionException as re:
             localctx.exception = re
@@ -866,10 +937,10 @@ class Multi_Core_GrammarParser ( Parser ):
     def bool_(self):
 
         localctx = Multi_Core_GrammarParser.BoolContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 24, self.RULE_bool)
+        self.enterRule(localctx, 26, self.RULE_bool)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 83
+            self.state = 92
             self.match(Multi_Core_GrammarParser.BOOLEAN)
         except RecognitionException as re:
             localctx.exception = re
@@ -911,22 +982,22 @@ class Multi_Core_GrammarParser ( Parser ):
     def otherCode(self):
 
         localctx = Multi_Core_GrammarParser.OtherCodeContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 26, self.RULE_otherCode)
+        self.enterRule(localctx, 28, self.RULE_otherCode)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 86 
+            self.state = 95 
             self._errHandler.sync(self)
             _alt = 1+1
             while _alt!=1 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt == 1+1:
-                    self.state = 85
+                    self.state = 94
                     self.matchWildcard()
 
                 else:
                     raise NoViableAltException(self)
-                self.state = 88 
+                self.state = 97 
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,6,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,8,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -970,10 +1041,10 @@ class Multi_Core_GrammarParser ( Parser ):
     def pythonFile(self):
 
         localctx = Multi_Core_GrammarParser.PythonFileContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 28, self.RULE_pythonFile)
+        self.enterRule(localctx, 30, self.RULE_pythonFile)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 90
+            self.state = 99
             self.match(Multi_Core_GrammarParser.FILEPATH)
         except RecognitionException as re:
             localctx.exception = re

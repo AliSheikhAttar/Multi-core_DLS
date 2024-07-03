@@ -1,6 +1,4 @@
-
-
-for i in range(50):
-    print(i, i*100)
-    x= i * i
-    print(x)
+filename = 'example.txt'
+for i in range(100):
+    with open(filename, 'a') as file:
+        file.write(f"This is line{i}.\n")

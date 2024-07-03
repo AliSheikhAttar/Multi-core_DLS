@@ -48,11 +48,11 @@ start_time = timeit.timeit()
 
 
 # Creating threads
-thread0 = threading.Thread(target=matrix_multiply,args=(A, B))
+thread0 = threading.Thread(target=matrix_multiply,args=[A, B])
 
-thread1 = threading.Thread(target=matrix_sum,args=(A, B))
+thread1 = threading.Thread(target=matrix_sum,args=[A, B])
 
-thread2 = threading.Thread(target=matrix_dot_product,args=(A, B))
+thread2 = threading.Thread(target=matrix_dot_product,args=[A, B])
 
 # Starting threads
 thread0.start()

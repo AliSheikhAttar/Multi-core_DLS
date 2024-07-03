@@ -117,7 +117,7 @@ start_time = timeit.timeit()
 
 # Creating threads
 for i in range(start, end, step):
-    thread = threading.Thread(target={function_name}, args=(i, i+step))
+    thread = threading.Thread(target={function_name}, args=[i, i+step])
     threads.append(thread)
 
 # Starting threads 
@@ -136,7 +136,7 @@ print(f"elapsed time : { '{' + 'end_time' + ' - ' + 'start_time' + '}'}")
                             f"""
 # Creating threads
 for i in range(start, end, step):
-    thread = threading.Thread(target={function_name}, args=(i, i+step))
+    thread = threading.Thread(target={function_name}, args=[i, i+step])
     threads.append(thread)
     
 # Starting threads  
@@ -161,10 +161,10 @@ for thread in threads:
                         self.code_stack.append("start_time = timeit.timeit()\n\n")
                     self.code_stack.append(lines[i])
                     function_name = lines[i+1].split("(")[0]
-                    args = lines[i+1].split(function_name)[1]
+                    args = lines[i+1].split(function_name)[1][1:-1]
                     self.code_stack.append(f"""   
     # Creating threads                 
-    thread = threading.Thread(target={function_name.lstrip()}, args={" ".join(args.rsplit())})
+    thread = threading.Thread(target={function_name.lstrip()}, args=[{" ".join(args.rsplit())}])
     threads.append(thread)
 
 # Starting threads  
@@ -193,31 +193,30 @@ print(f"elapsed time : { '{' + 'end_time' + ' - ' + 'start_time' + '}'}")
         range_limit = ""
         with open(self.file_address, 'r') as file:
             lines = file.readlines()
-            for i in range(len(lines)):
-                if (lines[i].startswith("for")):
-                    range_limit = lines[i].strip().split('(')[1].split(')')[0]
-                    arg = lines[i].split("in")[0].split("for")[1].strip()
+            counter = 0
+            while(counter < len(lines)):
+                if (lines[counter].startswith("for")):
+                    range_limit = lines[counter].strip().split('(')[1].split(')')[0]
+                    arg = lines[counter].split("in")[0].split("for")[1].strip()
                     arg += ', 0'
-                    counter = i+1
+                    counter +=1
                     while(counter < len(lines) and lines[counter].startswith("    ")):
                         loop_body += lines[counter]
                         counter += 1
-                    while(counter < len(lines)):
-                        self.code_stack.append(lines[counter])
-                        counter += 1
                 else:
-                    self.code_stack.append(lines[i])
+                    self.code_stack.append(lines[counter])
+                    counter +=1;
         loop_body += "\n"
         if (self.time):
             self.code_stack.append(f"""
 start_time = timeit.timeit()
                  
-def thread_func({arg.split(',')[0] + ', j'}):
+def thread_func({arg.split(',')[0]}):
 {loop_body}
 
 # Creating threads
 for i in range({range_limit}):
-    thread = threading.Thread(target=thread_func, args=({arg}))
+    thread = threading.Thread(target=thread_func, args=([{arg.split(',')[0]}]))
     threads.append(thread)
 
 # Starting threads
@@ -231,15 +230,15 @@ for thread in threads:
 end_time = timeit.timeit()
 
 print(f"elapsed time : { '{' + 'end_time' + ' - ' + 'start_time' + '}'}")
-""")
+        """)
         else:
             self.code_stack.append(f"""
-def thread_func({arg.split(',')[0] + ', j'}):
+def thread_func({arg.split(',')[0]}):
     {loop_body}
 
 # Creating threads
 for i in range({range_limit}):
-    thread = threading.Thread(target=thread_func, args=({arg}))
+    thread = threading.Thread(target=thread_func, args=[{arg}])
     threads.append(thread)
     
 # Starting threads
@@ -276,7 +275,7 @@ for thread in threads:
 
         for i in range(len(functions)):
             self.code_stack.append(f"""
-thread{i} = threading.Thread(target={functions[i][0]},args=({functions[i][1]}))
+thread{i} = threading.Thread(target={functions[i][0]},args=[{functions[i][1]}])
 """)
         self.code_stack.append("\n# Starting threads")
         for i in range(len(functions)):

@@ -5,9 +5,10 @@ start: program EOF;
 
 program: threadsNumber time (forLoop | pythonFile)*;
 
-threadsNumber: threadST threads_no;
+threadsNumber: threadST? threads_no;
 threadST: 'threads_number:';
-time: bool;
+time: timeST? bool;
+timeST: 'time:';
 
 forLoop: FOR variable IN iterable COLON (forLoop | otherCode)*;
 
